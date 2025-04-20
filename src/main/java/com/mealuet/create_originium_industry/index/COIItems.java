@@ -5,7 +5,7 @@ import com.mealuet.create_originium_industry.item.*;
 import com.tterrag.registrate.util.entry.ItemEntry;
 
 public class COIItems {
-    public static final ItemEntry<OriginiumIngotItem> ORIGINIUM_INGOT = CreateOriginiumIndustry.REGISTRATE.item("originium_ingot", OriginiumIngotItem::new)
+    public static final ItemEntry<OriginiumAlloyIngotItem> ORIGINIUM_ALLOY_INGOT = CreateOriginiumIndustry.REGISTRATE.item("originium_alloy_ingot", OriginiumAlloyIngotItem::new)
             .register();
     public static final ItemEntry<OriginiumItem> ORIGINIUM = CreateOriginiumIndustry.REGISTRATE.item("originium", OriginiumItem::new)
             .register();
