@@ -15,6 +15,8 @@ public class COIItems {
             .register();
     public static final ItemEntry<RawOriginiumItem> RAW_ORIGINIUM = CreateOriginiumIndustry.REGISTRATE.item("raw_originium", RawOriginiumItem::new)
             .register();
+    public static final ItemEntry<OriginiumDustItem> ORIGINIUM_DUST = CreateOriginiumIndustry.REGISTRATE.item("originium_dust", OriginiumDustItem::new)
+            .register();
 
     public static void register() {}
 }
