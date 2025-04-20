@@ -1,9 +1,21 @@
 {
   "itemGroup.create_originium_industry.main": "Create: Originium Industry",
 
+  "item.create_originium_industry.originium_dust": "Originium Dust",
   "item.create_originium_industry.raw_originium": "Raw Originium",
   "item.create_originium_industry.originium_shard": "Originium Shard",
   "item.create_originium_industry.originium": "Originium",
-  "item.create_originium_industry.originium_ingot": "Originium Ingot",
-  "item.create_originium_industry.purest_originium": "Purest Originium"
+  "item.create_originium_industry.originium_alloy_ingot": "Originium Alloy Ingot",
+  "item.create_originium_industry.purest_originium": "Purest Originium",
+  "item.create_originium_industry.originium_dust_sieve": "Originium Dust Sieve",
+  "item.create_originium_industry.originium_dust_nozzle": "Originium Dust Nozzle",
+
+  "item.create_originium_industry.molten_originium_bucket": "Molten Originium Bucket",
+  "item.create_originium_industry.purest_molten_originium_bucket": "Purest Molten Originium Bucket",
+  "item.create_originium_industry.originium_catalyst_bucket": "Originium Catalyst Bucket",
+  "fluid.create_originium_industry.molten_originium": "Molten Originium",
+  "fluid.create_originium_industry.purest_molten_originium": "Purest Molten Originium",
+  "fluid.create_originium_industry.originium_catalyst": "Originium Catalyst",
+
+  "effect.create_originium_industry.ori_dust_sickness": "OriDust Sickness"
 }
