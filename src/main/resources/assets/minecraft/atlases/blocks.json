@@ -1,0 +1,28 @@
+{
+  "sources": [
+    {
+      "type": "single",
+      "resource": "create_originium_industry:fluid/molten_originium_flow"
+    },
+    {
+      "type": "single",
+      "resource": "create_originium_industry:fluid/molten_originium_still"
+    },
+    {
+      "type": "single",
+      "resource": "create_originium_industry:fluid/purest_molten_originium_flow"
+    },
+    {
+      "type": "single",
+      "resource": "create_originium_industry:fluid/purest_molten_originium_still"
+    },
+    {
+      "type": "single",
+      "resource": "create_originium_industry:fluid/originium_catalyst_flow"
+    },
+    {
+      "type": "single",
+      "resource": "create_originium_industry:fluid/originium_catalyst_still"
+    }
+  ]
+}
