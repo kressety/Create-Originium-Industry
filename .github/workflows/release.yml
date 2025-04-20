@@ -50,3 +50,39 @@ jobs:
             ${{ steps.commit_history.outputs.commits }}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Publish to Modrinth
+        uses: cloudnode-pro/modrinth-publish@v2
+        with:
+          token: ${{ secrets.MODRINTH_TOKEN }}
+          project: NUmfxgJQ
+          version: ${{ github.ref_name }}
+          channel: ${{ contains(github.ref_name, '-dev') && 'alpha' || 'release' }}
+          changelog: |
+            ## Changes in this release:
+            ${{ steps.commit_history.outputs.commits }}
+          loaders: |-
+            neoforge
+          game-versions: |-
+            1.21.1
+          dependencies: |-
+            [{
+              "project_id": "LNytGWDc",
+              "dependency_type": "required"
+            }]
+          files: build/libs/*.jar
+
+      - name: Publish to Curseforge
+        uses: itsmeow/curseforge-upload@v3
+        with:
+          token: ${{ secrets.CF_API_TOKEN }}
+          project_id: 1247319
+          game_endpoint: minecraft
+          relations: "create:requiredDependency"
+          game_versions: "1.21.1,Java 21,NeoForge,Client,Server"
+          release_type: ${{ contains(github.ref_name, '-dev') && 'alpha' || 'release' }}
+          changelog_type: markdown
+          changelog: |
+            ## Changes in this release:
+            ${{ steps.commit_history.outputs.commits }}
+          file_path: build/libs/*.jar
