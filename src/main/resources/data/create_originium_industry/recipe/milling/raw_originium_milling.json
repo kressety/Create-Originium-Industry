@@ -1,0 +1,20 @@
+{
+  "type": "create:milling",
+  "ingredients": [
+    {
+      "item": "create_originium_industry:raw_originium"
+    }
+  ],
+  "processing_time": 200,
+  "results": [
+    {
+      "count": 3,
+      "id": "create_originium_industry:originium_shard"
+    },
+    {
+      "count": 1,
+      "chance": 0.6,
+      "id": "create_originium_industry:originium_shard"
+    }
+  ]
+}

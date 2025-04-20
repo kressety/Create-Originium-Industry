@@ -1,0 +1,15 @@
+{
+  "type": "create:crushing",
+  "ingredients": [
+    {
+      "item": "create_originium_industry:raw_originium"
+    }
+  ],
+  "processing_time": 400,
+  "results": [
+    {
+      "count": 4,
+      "id": "create_originium_industry:originium_shard"
+    }
+  ]
+}

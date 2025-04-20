@@ -1,0 +1,24 @@
+{
+  "type": "create:mixing",
+  "heat_requirement": "heated",
+  "ingredients": [
+    {
+      "item": "create_originium_industry:originium_shard"
+    },
+    {
+      "item": "create_originium_industry:originium_shard"
+    },
+    {
+      "item": "create_originium_industry:originium_shard"
+    },
+    {
+      "item": "create_originium_industry:originium_shard"
+    }
+  ],
+  "results": [
+    {
+      "count": 1,
+      "id": "create_originium_industry:originium"
+    }
+  ]
+}
