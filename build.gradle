@@ -185,3 +185,84 @@ idea {
         downloadJavadoc = true
     }
 }
+
+tasks.register('bumpVersion') {
+    description 'Bumps mod_version in gradle.properties, commits, pushes, and tags.'
+    group 'versioning'
+
+    def execOps = project.getObjects().newInstance(ExecOperations)
+
+    doLast {
+        // Get the bump type from command line (e.g., -PbumpType=patch)
+        String bumpType = project.hasProperty('bumpType') ? project.property('bumpType') : 'patch'
+
+        // Load current version from gradle.properties
+        def props = new Properties()
+        def gradlePropsFile = file('gradle.properties')
+        if (!gradlePropsFile.exists()) {
+            throw new GradleException("gradle.properties file not found")
+        }
+        props.load(gradlePropsFile.newReader())
+
+        def currentVersion = props.getProperty('mod_version')
+        if (!currentVersion) {
+            throw new GradleException("mod_version not found in gradle.properties")
+        }
+
+        // Parse and bump version
+        String newVersion
+        if (currentVersion.endsWith('-dev')) {
+            def baseVersion = currentVersion.replace('-dev', '')
+            def versionParts = baseVersion.tokenize('.').collect { it.toInteger() }
+            if (versionParts.size() != 3) {
+                throw new GradleException("Invalid version format: $baseVersion")
+            }
+            def (major, minor, patch) = versionParts
+
+            switch (bumpType.toLowerCase()) {
+                case 'patch':
+                    newVersion = "${major}.${minor}.${patch + 1}-dev"
+                    break
+                case 'minor':
+                    newVersion = "${major}.${minor + 1}.0-dev"
+                    break
+                case 'major':
+                    newVersion = "${major + 1}.0.0-dev"
+                    break
+                case 'release':
+                    newVersion = "1.${minor}.${patch}"
+                    break
+                default:
+                    throw new GradleException("Invalid bumpType: $bumpType. Use patch, minor, major, or release.")
+            }
+        } else {
+            throw new GradleException("Current version $currentVersion is not a dev version (must end with -dev)")
+        }
+
+        // Update gradle.properties
+        props.setProperty('mod_version', newVersion)
+        props.store(gradlePropsFile.newWriter(), null)
+        println "Updated mod_version to $newVersion"
+
+        // Commit and push changes
+        execOps.exec {
+            commandLine 'git', 'add', 'gradle.properties'
+        }
+        execOps.exec {
+            commandLine 'git', 'commit', '-m', "chore(version): bump version to $newVersion"
+        }
+        execOps.exec {
+            commandLine 'git', 'push', 'origin', 'main'
+        }
+
+        // Create and push tag
+        def tagName = "v${newVersion}"
+        execOps.exec {
+            commandLine 'git', 'tag', '-a', tagName, '-m', "Release $tagName"
+        }
+        execOps.exec {
+            commandLine 'git', 'push', 'origin', tagName
+        }
+        println "Created and pushed tag $tagName"
+    }
+}
