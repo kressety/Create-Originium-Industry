@@ -90,7 +90,7 @@ jobs:
           project_id: 1247319
           game_endpoint: minecraft
           relations: "create:requiredDependency"
-          game_versions: "1.21.1,Java 21,NeoForge,Client,Server"
+          game_versions: "Minecraft 1.21:1.21.1,Java 21,NeoForge,Client,Server"
           release_type: ${{ contains(github.ref_name, '-dev') && 'alpha' || 'release' }}
           changelog_type: markdown
           changelog: |
